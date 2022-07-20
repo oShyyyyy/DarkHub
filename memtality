@@ -1,0 +1,58 @@
+--[[
+.___  ___.  _______ .__   __. .___________.    ___       __       __       __  .___________.____    ____  __       __  .______   
+|   \/   | |   ____||  \ |  | |           |   /   \     |  |     |  |     |  | |           |\   \  /   / |  |     |  | |   _  \  
+|  \  /  | |  |__   |   \|  | `---|  |----`  /  ^  \    |  |     |  |     |  | `---|  |----` \   \/   /  |  |     |  | |  |_)  | 
+|  |\/|  | |   __|  |  . `  |     |  |      /  /_\  \   |  |     |  |     |  |     |  |       \_    _/   |  |     |  | |   _  <  
+|  |  |  | |  |____ |  |\   |     |  |     /  _____  \  |  `----.|  `----.|  |     |  |         |  |     |  `----.|  | |  |_)  | 
+|__|  |__| |_______||__| \__|     |__|    /__/     \__\ |_______||_______||__|     |__|         |__|     |_______||__| |______/  
+                                                                                                                                 
+    -- By Khronical#1101
+    Mentallity Function Library for Isle
+]]
+local IsleFunctions = {}
+
+function IsleFunctions:randomstring()
+	local length = math.random(10,20)
+	local array = {}
+	for i = 1, length do
+		array[i] = string.char(math.random(32, 126))
+	end
+	return table.concat(array)
+end
+function IsleFunctions:getKills(Player)
+	local target = tostring(Player)
+	if game:GetService("Players"):FindFirstChild(target) then
+		local Kills = tostring(game.Workspace.GameState.Statistics[target]["Players Killed"].Value)
+		return Kills
+	end
+end
+function IsleFunctions:getTravelDistance(Player)
+	local target = tostring(Player)
+	if game:GetService("Players"):FindFirstChild(target) then
+	    local RawTD = string.format("%.0f", game.Workspace.GameState.Statistics[target]["Distance Traveled"].Value)
+		local TravelDistance = tostring(RawTD)
+		return TravelDistance
+	end
+end
+function IsleFunctions:getUsedOxygen(Player)
+	local target = tostring(Player)
+	if game:GetService("Players"):FindFirstChild(target) then
+		local UsedOxygen = tostring(game.Workspace.GameState.Statistics[target]["Tank Oxygen Consumed"].Value)
+		return UsedOxygen
+	end
+end
+function IsleFunctions:Orbital(Player)
+    local TrolledPlayer = Player
+    if game:GetService("Players"):FindFirstChild(TrolledPlayer) and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Orbital Strike") then
+        game:GetService("Workspace").Services["@Laser"]:FireServer(TrolledPlayer)
+        game.Players.LocalPlayer.Character["Orbital Strike"].Parent = game.Players.LocalPlayer.Backpack
+        game.Players.LocalPlayer.Backpack["Orbital Strike"].RequestDrop:FireServer()
+    elseif game:GetService("Players"):FindFirstChild(TrolledPlayer) and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Orbital Strike") then
+        game.Players.LocalPlayer.Backpack["Orbital Strike"].Parent = game.Players.LocalPlayer.Character
+        game:GetService("Workspace").Services["@Laser"]:FireServer(TrolledPlayer)
+        game.Players.LocalPlayer.Character["Orbital Strike"].Parent = game.Players.LocalPlayer.Backpack
+        game.Players.LocalPlayer.Backpack["Orbital Strike"].RequestDrop:FireServer()
+    end
+end
+
+return IsleFunctions
