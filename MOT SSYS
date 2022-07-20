@@ -1,0 +1,17 @@
+local MoTS = {
+    [1] = 'Underlord on Top 💪💪';
+    [2] = 'RIP isle gui, 2020-2021';
+    [3] = 'Ivory Malware is underupdated';
+    [4] = 'Imagine using JJSploit 💀';
+    [5] = 'No Bitches?';
+    [6] = 'I keep forgetting to update tbh';
+    [7] = 'Isle 9 when??';
+    [8] = 'Subscribe to Bliooz';
+    [9] = 'Thank you Bliooz for advertising!';
+    [10] = 'NeoXephox is a human';
+    [11] = 'Keep yourself safe 😇';
+    [12] = 'Everyone is different, stay true to yourself.';
+    [13] = 'I kinda feel like Im playing a batman game seeing through all these walls and shit';
+}
+
+return MoTS[math.random(1,13)]
